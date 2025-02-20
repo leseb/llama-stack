@@ -16,7 +16,6 @@ from llama_stack.models.llama.sku_list import all_registered_models
 from llama_stack.providers.inline.inference.sentence_transformers import (
     SentenceTransformersInferenceConfig,
 )
-from llama_stack.providers.inline.vector_io.faiss.config import FaissVectorIOConfig
 from llama_stack.providers.remote.inference.groq import GroqConfig
 from llama_stack.providers.remote.inference.groq.models import _MODEL_ENTRIES
 from llama_stack.templates.template import DistributionTemplate, RunConfigSettings
@@ -51,11 +50,6 @@ def get_distribution_template() -> DistributionTemplate:
         provider_id="sentence-transformers",
         provider_type="inline::sentence-transformers",
         config=SentenceTransformersInferenceConfig.sample_run_config(),
-    )
-    vector_io_provider = Provider(
-        provider_id="faiss",
-        provider_type="inline::faiss",
-        config=FaissVectorIOConfig.sample_run_config(f"distributions/{name}"),
     )
     embedding_model = ModelInput(
         model_id="all-MiniLM-L6-v2",
