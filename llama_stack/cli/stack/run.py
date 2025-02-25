@@ -7,6 +7,7 @@
 import argparse
 import logging
 import os
+import sys
 from pathlib import Path
 
 from llama_stack.cli.subcommand import Subcommand
@@ -130,20 +131,45 @@ class StackRun(Subcommand):
         except AttributeError as e:
             self.parser.error(f"failed to parse config file '{config_file}':\n {e}")
 
-        run_args = formulate_run_args(args.image_type, args.image_name, config, template_name)
+        # If the image type and name are not provided, we assume the user wants to run using system
+        # packages and directly run the server code.
+        if not args.image_type and not args.image_name:
+            logger.info("No image type or image name provided. Assuming system packages.")
+            # Import and run the server directly
+            try:
+                from llama_stack.distribution.server.server import main as server_main
 
-        run_args.extend([str(config_file), str(args.port)])
-        if args.disable_ipv6:
-            run_args.append("--disable-ipv6")
+                # Remove the first argument which is the command name, the second argument which is
+                # the config file, the third argument which is the pass to the config file.
+                sys.argv = sys.argv[3:]
 
-        for env_var in args.env:
-            if "=" not in env_var:
-                self.parser.error(f"Environment variable '{env_var}' must be in KEY=VALUE format")
-            key, value = env_var.split("=", 1)  # split on first = only
-            if not key:
-                self.parser.error(f"Environment variable '{env_var}' has empty key")
-            run_args.extend(["--env", f"{key}={value}"])
+                # Build final sys.argv to pass to the server and add the config file
+                sys.argv = ["server"] + sys.argv[1:]
+                sys.argv.extend(["--yaml-config", str(config_file)])
 
-        if args.tls_keyfile and args.tls_certfile:
-            run_args.extend(["--tls-keyfile", args.tls_keyfile, "--tls-certfile", args.tls_certfile])
-        run_with_pty(run_args)
+                # Run the server
+                server_main()
+            except Exception as e:
+                self.parser.error(f"Failed to run server: {e}")
+            except ImportError as e:
+                self.parser.error(f"Failed to import server module: {e}")
+        else:
+            run_args = formulate_run_args(args.image_type, args.image_name, config, template_name)
+
+            run_args.extend([str(config_file), str(args.port)])
+            if args.disable_ipv6:
+                run_args.append("--disable-ipv6")
+
+            for env_var in args.env:
+                if "=" not in env_var:
+                    self.parser.error(f"Environment variable '{env_var}' must be in KEY=VALUE format")
+                    return
+                key, value = env_var.split("=", 1)  # split on first = only
+                if not key:
+                    self.parser.error(f"Environment variable '{env_var}' has empty key")
+                    return
+                run_args.extend(["--env", f"{key}={value}"])
+
+            if args.tls_keyfile and args.tls_certfile:
+                run_args.extend(["--tls-keyfile", args.tls_keyfile, "--tls-certfile", args.tls_certfile])
+            run_with_pty(run_args)
