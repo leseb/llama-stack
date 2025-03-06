@@ -1,0 +1,165 @@
+{
+  "()_[('kwargs', {'session_id': '<UUID>', 'code': \"import pandas as pd\\ndf = pd.read_csv('<TEMP_FILE>')\"}), ('tool_name', 'code_interpreter')]": {
+    "type": "value",
+    "value": {
+      "content": "error\n[stdout]\n[Errno 2] No such file or directory: 'bwrap'\n[/stdout]\n[stderr]\n[Errno 2] No such file or directory: 'bwrap'\n[/stderr]",
+      "error_code": null,
+      "error_message": null,
+      "metadata": null
+    }
+  },
+  "()_[('kwargs', {'session_id': '<UUID>', 'code': \"import pandas as pd\\ndf = pd.read_csv('<TEMP_FILE>')\\nprint(df.head())\"}), ('tool_name', 'code_interpreter')]": {
+    "type": "value",
+    "value": {
+      "content": "error\n[stdout]\n[Errno 2] No such file or directory: 'bwrap'\n[/stdout]\n[stderr]\n[Errno 2] No such file or directory: 'bwrap'\n[/stderr]",
+      "error_code": null,
+      "error_message": null,
+      "metadata": null
+    }
+  },
+  "()_[('kwargs', {'session_id': '<UUID>', 'code': \"import pandas as pd\\nimport matplotlib.pyplot as plt\\n\\n# Load the CSV file\\ndf = pd.read_csv('inflation.csv')\\n\\n# Convert the 'Year' column to datetime format\\ndf['Year'] = pd.to_datetime(df['Year'], format='%Y')\\n\\n# Group by 'Year' and calculate the average inflation rate\\navg_inflation = df.groupby('Year')['Inflation Rate'].mean()\\n\\n# Plot the time series\\nplt.figure(figsize=(10,6))\\nplt.plot(avg_inflation.index.year, avg_inflation.values, marker='o')\\nplt.title('Average Yearly Inflation Rate')\\nplt.xlabel('Year')\\nplt.ylabel('Average Inflation Rate (%)')\\nplt.grid(True)\\nplt.show()\"}), ('tool_name', 'code_interpreter')]": {
+    "type": "value",
+    "value": {
+      "content": "error\n[stdout]\n[Errno 2] No such file or directory: 'bwrap'\n[/stdout]\n[stderr]\n[Errno 2] No such file or directory: 'bwrap'\n[/stderr]",
+      "error_code": null,
+      "error_message": null,
+      "metadata": null
+    }
+  },
+  "()_[('kwargs', {'session_id': '<UUID>', 'code': \"import pandas as pd\\nimport matplotlib.pyplot as plt\\n\\n# Load the CSV file\\ndf = pd.read_csv('inflation_data.csv')\\n\\n# Convert the 'Year' column to datetime format\\ndf['Year'] = pd.to_datetime(df['Year'], format='%Y')\\n\\n# Group by 'Year' and calculate the average inflation rate\\navg_inflation = df.groupby('Year')['Inflation Rate'].mean()\\n\\n# Plot the time series\\nplt.figure(figsize=(10,6))\\nplt.plot(avg_inflation.index.year, avg_inflation.values, marker='o')\\nplt.title('Average Yearly Inflation Rate')\\nplt.xlabel('Year')\\nplt.ylabel('Average Inflation Rate (%)')\\nplt.grid(True)\\nplt.show()\"}), ('tool_name', 'code_interpreter')]": {
+    "type": "value",
+    "value": {
+      "content": "error\n[stdout]\n[Errno 2] No such file or directory: 'bwrap'\n[/stdout]\n[stderr]\n[Errno 2] No such file or directory: 'bwrap'\n[/stderr]",
+      "error_code": null,
+      "error_message": null,
+      "metadata": null
+    }
+  },
+  "()_[('kwargs', {'session_id': '<UUID>', 'code': 'def is_prime(n):\\n    if n <= 1:\\n        return False\\n    elif n <= 3:\\n        return True\\n    elif n % 2 == 0 or n % 3 == 0:\\n        return False\\n    i = 5\\n    while i * i <= n:\\n        if n % i == 0 or n % (i + 2) == 0:\\n            return False\\n        i += 6\\n    return True\\n\\ndef nth_prime(n):\\n    count = 0\\n    num = 2\\n    while True:\\n        if is_prime(num):\\n            count += 1\\n            if count == n:\\n                return num\\n        num += 1\\n\\nprint(nth_prime(100))'}), ('tool_name', 'code_interpreter')]": {
+    "type": "value",
+    "value": {
+      "content": "error\n[stdout]\n[Errno 2] No such file or directory: 'bwrap'\n[/stdout]\n[stderr]\n[Errno 2] No such file or directory: 'bwrap'\n[/stderr]",
+      "error_code": null,
+      "error_message": null,
+      "metadata": null
+    }
+  },
+  "()_[('kwargs', {'session_id': '<UUID>', 'query': 'Llama3-8B attention mechanism', 'vector_db_ids': ['test-vector-db-<UUID>']}), ('tool_name', 'knowledge_search')]": {
+    "type": "value",
+    "value": {
+      "content": [
+        {
+          "text": "knowledge_search tool found 5 chunks:\nBEGIN of knowledge_search tool results.\n",
+          "type": "text"
+        },
+        {
+          "text": "Result 1:\nDocument_id:num-1\nContent:  3 <https://llama.meta.com/llama3>`_ is a new family of models released by Meta AI that improves upon the performance of the Llama2 family\nof models across a `range of different benchmarks <https://huggingface.co/meta-llama/Meta-Llama-3-8B#base-pretrained-models>`_.\nCurrently there are two different sizes of Meta Llama 3: 8B and 70B. In this tutorial we will focus on the 8B size model.\nThere are a few main changes between Llama2-7B and Llama3-8B models:\n\n- Llama3-8B uses `grouped-query attention <https://arxiv.org/abs/2305.13245>`_ instead of the standard multi-head attention from Llama2-7B\n- Llama3-8B has a larger vocab size (128,256 instead of 32,000 from Llama2 models)\n- Llama3-8B uses a different tokenizer than Llama2 models (`tiktoken <https://github.com/openai/tiktoken>`_ instead of `sentencepiece <https://github.com/google/sentencepiece>`_)\n- Llama3-\n",
+          "type": "text"
+        },
+        {
+          "text": "Result 2:\nDocument_id:num-1\nContent:  instead of 32,000 from Llama2 models)\n- Llama3-8B uses a different tokenizer than Llama2 models (`tiktoken <https://github.com/openai/tiktoken>`_ instead of `sentencepiece <https://github.com/google/sentencepiece>`_)\n- Llama3-8B uses a larger intermediate dimension in its MLP layers than Llama2-7B\n- Llama3-8B uses a higher base value to calculate theta in its `rotary positional embeddings <https://arxiv.org/abs/2104.09864>`_\n\n|\n\nGetting access to Llama3-8B-Instruct\n------------------------------------\n\nFor this tutorial, we will be using the instruction-tuned version of Llama3-8B. First, let's download the model from Hugging Face. You will need to follow the instructions\non the `official Meta page <https://github.com/meta-llama/llama3/blob/main/README.md>`_ to gain access to the model.\nNext, make sure you grab your Hugging Face token from `here <https://huggingface.co/settings/tokens>`_.\n\n\n.. code-block:: bash\n\n    tune download meta-llama/Meta-Llama-3\n",
+          "type": "text"
+        },
+        {
+          "text": "Result 3:\nDocument_id:num-0\nContent: :`download Llama3 Instruct weights <llama3_label>`\n\n\nTemplate changes from Llama2 to Llama3\n--------------------------------------\n\nThe Llama2 chat model requires a specific template when prompting the pre-trained\nmodel. Since the chat model was pretrained with this prompt template, if you want to run\ninference on the model, you'll need to use the same template for optimal performance\non chat data. Otherwise, the model will just perform standard text completion, which\nmay or may not align with your intended use case.\n\nFrom the `official Llama2 prompt\ntemplate guide <https://llama.meta.com/docs/model-cards-and-prompt-formats/meta-llama-2>`_\nfor the Llama2 chat model, we can see that special tags are added:\n\n.. code-block:: text\n\n    <s>[INST] <<SYS>>\n    You are a helpful, respectful, and honest assistant.\n    <</SYS>>\n\n    Hi! I am a human. [/INST] Hello there! Nice to meet you! I'm Meta AI, your friendly AI assistant </s>\n\nLlama3 Instruct `overhauled <https://llama.meta.com/docs/model-cards-and-prompt-formats/meta-llama-3>`\n",
+          "type": "text"
+        },
+        {
+          "text": "Result 4:\nDocument_id:num-3\nContent:  LoRA to Llama2 models\n------------------------------\n\nWith torchtune, we can easily apply LoRA to Llama2 with a variety of different configurations.\nLet's take a look at how to construct Llama2 models in torchtune with and without LoRA.\n\n.. code-block:: python\n\n  from torchtune.models.llama2 import llama2_7b, lora_llama2_7b\n\n  # Build Llama2 without any LoRA layers\n  base_model = llama2_7b()\n\n  # The default settings for lora_llama2_7b will match those for llama2_7b\n  # We just need to define which layers we want LoRA applied to.\n  # Within each self-attention, we can choose from [\"q_proj\", \"k_proj\", \"v_proj\", and \"output_proj\"].\n  # We can also set apply_lora_to_mlp=True or apply_lora_to_output=True to apply LoRA to other linear\n  # layers outside of the self-attention.\n  lora_model = lora_llama2_7b(lora_attn_modules=[\"q_proj\", \"v_proj\"])\n\n.. note::\n\n    Calling :func:`lora_llama_2\n",
+          "type": "text"
+        },
+        {
+          "text": "Result 5:\nDocument_id:num-3\nContent:  LoRA for the linear layers in each self-attention module, but in fact there are other linear\nlayers we can apply LoRA to: MLP layers and our model's final output projection. Note that for Llama-2-7B the final output\nprojection maps to the vocabulary dimension (32000 instead of 4096 as in the other linear layers), so enabling LoRA for this layer will increase\nour peak memory a bit more than the other layers. We can make the following changes to our config:\n\n.. code-block:: yaml\n\n  # Model Arguments\n  model:\n    _component_: lora_llama2_7b\n    lora_attn_modules: ['q_proj', 'k_proj', 'v_proj', 'output_proj']\n    apply_lora_to_mlp: True\n    apply_lora_to_output: True\n  ...\n\n.. note::\n    All the finetuning runs below use the `llama2/7B_lora_single_device <https://github.com/pytorch/torchtune/blob/main/recipes/configs/llama2/7B_lora_single_device.yaml>`_\n    config, which has a default batch size of 2. Modifying the batch size (or other hyperparameters, e\n",
+          "type": "text"
+        },
+        {
+          "text": "END of knowledge_search tool results.\n",
+          "type": "text"
+        }
+      ],
+      "error_code": null,
+      "error_message": null,
+      "metadata": {
+        "document_ids": [
+          "num-1",
+          "num-1",
+          "num-0",
+          "num-3",
+          "num-3"
+        ]
+      }
+    }
+  },
+  "()_[('kwargs', {'session_id': '<UUID>', 'query': 'NBA creation date', 'vector_db_ids': ['test-vector-db-<UUID>']}), ('tool_name', 'knowledge_search')]": {
+    "type": "value",
+    "value": {
+      "content": [
+        {
+          "text": "knowledge_search tool found 3 chunks:\nBEGIN of knowledge_search tool results.\n",
+          "type": "text"
+        },
+        {
+          "text": "Result 1:\nDocument_id:nba_w\nContent: The NBA was created on August 3, 1949, with the merger of the Basketball Association of America (BAA) and the National Basketball League (NBL).\n",
+          "type": "text"
+        },
+        {
+          "text": "Result 2:\nDocument_id:perpl\nContent: Perplexity the company was founded in 2022 by Aravind Srinivas, Andy Konwinski, Denis Yarats and Johnny Ho, engineers with backgrounds in back-end systems, artificial intelligence (AI) and machine learning:\n\n    Srinivas, the CEO, worked at OpenAI as an AI researcher.\n    Konwinski was among the founding team at Databricks.\n    Yarats, the CTO, was an AI research scientist at Meta.\n    Ho, the CSO, worked as an engineer at Quora, then as a quantitative trader on Wall Street.[5]\n",
+          "type": "text"
+        },
+        {
+          "text": "Result 3:\nDocument_id:perpl\nContent:  Ho, the CSO, worked as an engineer at Quora, then as a quantitative trader on Wall Street.[5]\n",
+          "type": "text"
+        },
+        {
+          "text": "END of knowledge_search tool results.\n",
+          "type": "text"
+        }
+      ],
+      "error_code": null,
+      "error_message": null,
+      "metadata": {
+        "document_ids": [
+          "nba_wiki",
+          "perplexity_wiki",
+          "perplexity_wiki"
+        ]
+      }
+    }
+  },
+  "()_[('kwargs', {'session_id': '<UUID>', 'query': 'Perplexity company founding date', 'vector_db_ids': ['test-vector-db-<UUID>']}), ('tool_name', 'knowledge_search')]": {
+    "type": "value",
+    "value": {
+      "content": [
+        {
+          "text": "knowledge_search tool found 3 chunks:\nBEGIN of knowledge_search tool results.\n",
+          "type": "text"
+        },
+        {
+          "text": "Result 1:\nDocument_id:perpl\nContent: Perplexity the company was founded in 2022 by Aravind Srinivas, Andy Konwinski, Denis Yarats and Johnny Ho, engineers with backgrounds in back-end systems, artificial intelligence (AI) and machine learning:\n\n    Srinivas, the CEO, worked at OpenAI as an AI researcher.\n    Konwinski was among the founding team at Databricks.\n    Yarats, the CTO, was an AI research scientist at Meta.\n    Ho, the CSO, worked as an engineer at Quora, then as a quantitative trader on Wall Street.[5]\n",
+          "type": "text"
+        },
+        {
+          "text": "Result 2:\nDocument_id:perpl\nContent:  Ho, the CSO, worked as an engineer at Quora, then as a quantitative trader on Wall Street.[5]\n",
+          "type": "text"
+        },
+        {
+          "text": "Result 3:\nDocument_id:nba_w\nContent: The NBA was created on August 3, 1949, with the merger of the Basketball Association of America (BAA) and the National Basketball League (NBL).\n",
+          "type": "text"
+        },
+        {
+          "text": "END of knowledge_search tool results.\n",
+          "type": "text"
+        }
+      ],
+      "error_code": null,
+      "error_message": null,
+      "metadata": {
+        "document_ids": [
+          "perplexity_wiki",
+          "perplexity_wiki",
+          "nba_wiki"
+        ]
+      }
+    }
+  }
+}
