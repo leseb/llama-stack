@@ -64,8 +64,12 @@ test = [
     "opentelemetry-sdk",
     "opentelemetry-exporter-otlp-proto-http",
     "tiktoken",
+    "sqlite_vec",
     "chardet",
     "pypdf",
+    "mcp",
+    "datasets",
+    "autoevals",
 ]
 docs = [
     "sphinx-autobuild",

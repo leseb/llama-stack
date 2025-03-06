@@ -1,0 +1,223 @@
+{
+  "('meta-llama/Llama-3.2-3B-Instruct', [SystemMessage(role='system', content='You are a helpful assistant Always respond with tool calls no matter what. '), UserMessage(role='user', content='Get the boiling point of polyjuice with a tool call.', context=None), CompletionMessage(role='assistant', content='', stop_reason=<StopReason.end_of_turn: 'end_of_turn'>, tool_calls=[ToolCall(call_id='<UUID>', tool_name='get_boiling_point', arguments={'liquid_name': 'polyjuice', 'celcius': True})]), ToolResponseMessage(role='tool', call_id='<UUID>', tool_name='get_boiling_point', content='-100')])_[('response_format', None), ('sampling_params', SamplingParams(strategy=TopPSamplingStrategy(type='top_p', temperature=0.0001, top_p=0.9), max_tokens=0, repetition_penalty=1.0)), ('stream', True), ('tool_config', ToolConfig(tool_choice=<ToolChoice.auto: 'auto'>, tool_prompt_format=None, system_message_behavior=<SystemMessageBehavior.append: 'append'>)), ('tool_prompt_format', None), ('tools', [ToolDefinition(tool_name='get_boiling_point', description='Returns the boiling point of a liquid in Celcius or Fahrenheit', parameters={'liquid_name': ToolParamDefinition(param_type='str', description='The name of the liquid', required=True, default=None), 'celcius': ToolParamDefinition(param_type='bool', description='Whether to return the boiling point in Celcius', required=False, default=True)})])]": {
+    "chunks": [
+      {
+        "event": {
+          "delta": {
+            "text": "",
+            "type": "text"
+          },
+          "event_type": {
+            "__enum__": "ChatCompletionResponseEventType",
+            "value": "start"
+          },
+          "logprobs": null,
+          "stop_reason": null
+        },
+        "metrics": null
+      },
+      {
+        "event": {
+          "delta": {
+            "text": "The",
+            "type": "text"
+          },
+          "event_type": {
+            "__enum__": "ChatCompletionResponseEventType",
+            "value": "progress"
+          },
+          "logprobs": null,
+          "stop_reason": null
+        },
+        "metrics": null
+      },
+      {
+        "event": {
+          "delta": {
+            "text": " boiling",
+            "type": "text"
+          },
+          "event_type": {
+            "__enum__": "ChatCompletionResponseEventType",
+            "value": "progress"
+          },
+          "logprobs": null,
+          "stop_reason": null
+        },
+        "metrics": null
+      },
+      {
+        "event": {
+          "delta": {
+            "text": " point",
+            "type": "text"
+          },
+          "event_type": {
+            "__enum__": "ChatCompletionResponseEventType",
+            "value": "progress"
+          },
+          "logprobs": null,
+          "stop_reason": null
+        },
+        "metrics": null
+      },
+      {
+        "event": {
+          "delta": {
+            "text": " of",
+            "type": "text"
+          },
+          "event_type": {
+            "__enum__": "ChatCompletionResponseEventType",
+            "value": "progress"
+          },
+          "logprobs": null,
+          "stop_reason": null
+        },
+        "metrics": null
+      },
+      {
+        "event": {
+          "delta": {
+            "text": " poly",
+            "type": "text"
+          },
+          "event_type": {
+            "__enum__": "ChatCompletionResponseEventType",
+            "value": "progress"
+          },
+          "logprobs": null,
+          "stop_reason": null
+        },
+        "metrics": null
+      },
+      {
+        "event": {
+          "delta": {
+            "text": "ju",
+            "type": "text"
+          },
+          "event_type": {
+            "__enum__": "ChatCompletionResponseEventType",
+            "value": "progress"
+          },
+          "logprobs": null,
+          "stop_reason": null
+        },
+        "metrics": null
+      },
+      {
+        "event": {
+          "delta": {
+            "text": "ice",
+            "type": "text"
+          },
+          "event_type": {
+            "__enum__": "ChatCompletionResponseEventType",
+            "value": "progress"
+          },
+          "logprobs": null,
+          "stop_reason": null
+        },
+        "metrics": null
+      },
+      {
+        "event": {
+          "delta": {
+            "text": " is",
+            "type": "text"
+          },
+          "event_type": {
+            "__enum__": "ChatCompletionResponseEventType",
+            "value": "progress"
+          },
+          "logprobs": null,
+          "stop_reason": null
+        },
+        "metrics": null
+      },
+      {
+        "event": {
+          "delta": {
+            "text": " -",
+            "type": "text"
+          },
+          "event_type": {
+            "__enum__": "ChatCompletionResponseEventType",
+            "value": "progress"
+          },
+          "logprobs": null,
+          "stop_reason": null
+        },
+        "metrics": null
+      },
+      {
+        "event": {
+          "delta": {
+            "text": "100",
+            "type": "text"
+          },
+          "event_type": {
+            "__enum__": "ChatCompletionResponseEventType",
+            "value": "progress"
+          },
+          "logprobs": null,
+          "stop_reason": null
+        },
+        "metrics": null
+      },
+      {
+        "event": {
+          "delta": {
+            "text": "\u00b0C",
+            "type": "text"
+          },
+          "event_type": {
+            "__enum__": "ChatCompletionResponseEventType",
+            "value": "progress"
+          },
+          "logprobs": null,
+          "stop_reason": null
+        },
+        "metrics": null
+      },
+      {
+        "event": {
+          "delta": {
+            "text": ".",
+            "type": "text"
+          },
+          "event_type": {
+            "__enum__": "ChatCompletionResponseEventType",
+            "value": "progress"
+          },
+          "logprobs": null,
+          "stop_reason": null
+        },
+        "metrics": null
+      },
+      {
+        "event": {
+          "delta": {
+            "text": "",
+            "type": "text"
+          },
+          "event_type": {
+            "__enum__": "ChatCompletionResponseEventType",
+            "value": "complete"
+          },
+          "logprobs": null,
+          "stop_reason": {
+            "__enum__": "StopReason",
+            "value": "end_of_turn"
+          }
+        },
+        "metrics": [
+          {
+            "attributes": {
+              "model_id": "meta-llama/Llama-3.2-3B-Instruct",
+              "provider_id": "ollama"
+            },
+            "metric": "prompt_tokens",
+            "span_id": "_qAvf-fd",
+            "timestamp":
