@@ -40,6 +40,7 @@ jobs:
       matrix:
         template: ${{ fromJson(needs.generate-matrix.outputs.templates) }}
         image-type: [venv, container]
+      fail-fast: false
 
     steps:
       - name: Checkout repository
@@ -74,3 +75,25 @@ jobs:
         run: |
           source test/bin/activate
           uv pip list
+
+      - name: Run the server
+        run: |
+          nohup uv run llama stack run ${{ matrix.template }} --image-type ${{ matrix.image-type }} --image-name test > server.log 2>&1 &
+
+      - name: Wait for Llama Stack server to be ready
+        run: |
+          echo "Waiting for Llama Stack server..."
+          for i in {1..30}; do
+            if curl -s http://localhost:8321/v1/health | grep -q "OK"; then
+              echo " Llama Stack server is up!"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo " Llama Stack server failed to start"
+          cat server.log
+          # print all containers
+          docker ps -a
+          # print the logs of all containers
+          docker logs $(docker ps -a -q)
+          exit 1
