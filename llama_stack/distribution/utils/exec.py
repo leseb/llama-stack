@@ -11,6 +11,7 @@ import select
 import signal
 import subprocess
 import sys
+import termios
 
 from termcolor import cprint
 
@@ -92,7 +93,13 @@ def run_with_pty(command):
     if sys.platform.startswith("win"):
         return _run_with_pty_win(command)
     else:
-        return _run_with_pty_unix(command)
+        try:
+            return _run_with_pty_unix(command)
+        except (termios.error, OSError) as e:
+            # If we can't use PTY (e.g., in CI/CD (GitHub Actions), or non-interactive environment),
+            # fall back to regular subprocess execution
+            log.warning(f"Could not use PTY, falling back to regular subprocess: {e}")
+            return run_command(command)
 
 
 def in_notebook():
@@ -226,11 +233,19 @@ def _run_with_pty_win(command):
 
 
 def run_command(command):
+    """Run a command without PTY, suitable for non-interactive environments."""
     try:
-        result = subprocess.run(command, capture_output=True, text=True, check=True)
-        print("Script Output\n", result.stdout)
-        return result.returncode
-    except subprocess.CalledProcessError as e:
-        print("Error running script:", e)
-        print("Error output:", e.stderr)
-        return e.returncode
+        process = subprocess.Popen(
+            command,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            universal_newlines=True,
+        )
+        stdout, stderr = process.communicate()
+        if process.returncode != 0:
+            log.error(f"Command failed with stderr: {stderr}")
+        print("Script Output\n", stdout)
+        return process.returncode
+    except Exception as e:
+        log.error(f"Error running command: {e}")
+        return 1
