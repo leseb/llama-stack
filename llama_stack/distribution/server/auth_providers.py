@@ -255,8 +255,8 @@ class OAuth2TokenAuthProvider(AuthProvider):
                 audience=self.config.audience,
                 options={"verify_exp": True},
             )
-        except Exception as exc:
-            raise ValueError(f"Invalid JWT token: {token}") from exc
+        except Exception:
+            raise ValueError(f"Invalid JWT token: {token}")
 
         # There are other standard claims, the most relevant of which is `scope`.
         # We should incorporate these into the access attributes.
