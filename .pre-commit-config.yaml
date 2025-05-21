@@ -41,7 +41,8 @@ repos:
     rev: v0.9.4
     hooks:
     -   id: ruff
-        args: [ --fix ]
+        # args: [ "--fix", "--output-format", "github" ]
+        args: [ "--fix" ]
         exclude: ^llama_stack/strong_typing/.*$
     -   id: ruff-format
 
