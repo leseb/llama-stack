@@ -66,7 +66,6 @@ jobs:
       - name: Print dependencies in the image
         if: matrix.image-type == 'venv'
         run: |
-          source test/bin/activate
           uv pip list
 
   build-single-provider:

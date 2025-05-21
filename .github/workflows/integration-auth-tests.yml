@@ -79,7 +79,6 @@ jobs:
           yq eval '.server.auth.config = {"api_server_url": "${{ env.KUBERNETES_API_SERVER_URL }}", "ca_cert_path": "${{ env.KUBERNETES_CA_CERT_PATH }}"}' -i $run_dir/run.yaml
           cat $run_dir/run.yaml
 
-          source .venv/bin/activate
           nohup uv run llama stack run $run_dir/run.yaml --image-type venv > server.log 2>&1 &
 
       - name: Wait for Llama Stack server to be ready

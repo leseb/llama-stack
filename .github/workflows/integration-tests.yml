@@ -47,7 +47,6 @@ jobs:
         env:
           INFERENCE_MODEL: "meta-llama/Llama-3.2-3B-Instruct"
         run: |
-          source .venv/bin/activate
           LLAMA_STACK_LOG_FILE=server.log nohup uv run llama stack run ./llama_stack/templates/ollama/run.yaml --image-type venv &
 
       - name: Wait for Llama Stack server to be ready
