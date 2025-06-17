@@ -1,0 +1,55 @@
+name: Setup vLLM
+description: Start vLLM
+runs:
+  using: "composite"
+  steps:
+    - name: Start vLLM
+      shell: bash
+      run: |
+        # Use /mnt to store podman containers and runroot
+        mkdir -p ~/.config/containers
+        sudo mkdir -p /mnt/podman
+        sudo chown -R runner:runner /mnt/podman
+        sudo chmod -R 755 /mnt/podman
+        cat <<EOF > ~/.config/containers/storage.conf
+        [storage]
+        driver = "overlay"
+        runroot = "/mnt/podman/runroot"
+        graphroot = "/mnt/podman/containers"
+        [storage.options]
+        mount_program = "/usr/bin/fuse-overlayfs"
+        EOF
+        podman info
+        # use meta-llama/Llama-3.2-1B-Instruct when I have access to the model
+        # git clone https://github.com/vllm-project/vllm --depth 1
+        # cd vllm
+        # podman build -f docker/Dockerfile.cpu --tag vllm-cpu-env --target vllm-openai .
+        # podman run --name vllm \
+        #             --detach \
+        #             --privileged=true \
+        #             --shm-size=4g \
+        #             -p 8000:8000 \
+        #             -e VLLM_CPU_KVCACHE_SPACE=10 \
+        #             -e VLLM_CPU_OMP_THREADS_BIND=0-$(($(nproc) - 1)) \
+        #             -e HF_TOKEN=$HF_TOKEN \
+        #             localhost/vllm-cpu-env \
+        #             --model=meta-llama/Llama-3.2-1B-Instruct \
+        #             --dtype=bfloat16 \
+        #             --enable-auto-tool-choice \
+        #             --tool-call-parser llama3_json
+        podman run --name vllm \
+                    --detach \
+                    --privileged=true \
+                    --shm-size=4g \
+                    -p 8000:8000 \
+                    -e VLLM_CPU_KVCACHE_SPACE=10 \
+                    -e VLLM_CPU_OMP_THREADS_BIND=0-$(($(nproc) - 1)) \
+                    -e HF_TOKEN=$HF_TOKEN \
+                    leseb/vllm-aed8468-with-models \
+                    --model=meta-llama/Llama-3.2-1B-Instruct \
+                    --dtype=bfloat16 \
+                    --enable-auto-tool-choice \
+                    --tool-call-parser llama3_json
+        # wait for vllm to be ready
+        timeout 120 bash -c 'while ! curl -s http://localhost:8000/v1/models | grep -q "Llama-3.2-1B-Instruct"; do echo "Waiting for vLLM to be ready..."; sleep 1; done'
+        echo "vLLM is ready"
