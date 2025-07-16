@@ -14,19 +14,19 @@ failed=0
 # Find all workflow YAML files
 for file in $(find .github/workflows/ -type f \( -name "*.yml" -o -name "*.yaml" \)); do
     IFS=$'\n'
-    # Grep for `uses:` lines that look like actions
-    for line in $(grep -E '^.*uses:[^@]+@[^ ]+' "$file"); do
+    # Grep for `uses:` lines that look like actions with line numbers
+    while IFS=: read -r line_num line_content; do
         # Extract the ref part after the last @
-        ref=$(echo "$line" | sed -E 's/.*@([A-Za-z0-9._-]+).*/\1/')
+        ref=$(echo "$line_content" | sed -E 's/.*@([A-Za-z0-9._-]+).*/\1/')
         # Check if ref is a 40-character hex string (full SHA).
         #
         # Note: strictly speaking, this could also be a tag or branch name, but
         # we'd have to pull this info from the remote. Meh.
         if ! [[ $ref =~ ^[0-9a-fA-F]{40}$ ]]; then
-            echo "ERROR: $file uses non-SHA action ref: $line"
+            echo "::error title=Non-SHA action ref file=$file line=$line_num:: uses non-SHA action ref: $line_content"
             failed=1
         fi
-    done
+    done < <(grep -n -E '^.*uses:[^@]+@[^ ]+' "$file")
 done
 
 exit $failed
